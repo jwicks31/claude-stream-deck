@@ -1,0 +1,6 @@
+node_modules/
+dist/
+com.articulate.claude-usage.sdPlugin/bin/
+.DS_Store
+logs/
+com.articulate.claude-usage.sdPlugin/logs/

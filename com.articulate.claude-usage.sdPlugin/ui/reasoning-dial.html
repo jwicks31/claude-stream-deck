@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="pi.css" />
+</head>
+<body>
+  <div class="field">
+    <label for="items">Reasoning levels (one per line, low → high)</label>
+    <textarea id="items" data-setting="items" placeholder="think&#10;think hard&#10;think harder&#10;ultrathink"></textarea>
+    <div class="hint">Defaults are Claude Code's thinking keywords — type one before/with your prompt to raise the thinking budget.</div>
+  </div>
+  <div class="field">
+    <label for="terminalApp">Terminal app to activate (optional)</label>
+    <input id="terminalApp" type="text" placeholder="blank = frontmost app" data-setting="terminalApp" />
+  </div>
+  <div class="field row">
+    <input id="pressEnter" type="checkbox" data-setting="pressEnter" />
+    <label for="pressEnter" style="margin:0">Press Enter after typing</label>
+  </div>
+  <div class="hint">Rotate to choose the level, press the dial to type it. macOS only; requires Accessibility permission for Stream Deck.</div>
+  <script src="pi.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="pi.css" />
+</head>
+<body>
+  <div class="field">
+    <label for="projectFilter">Project filter (optional)</label>
+    <input id="projectFilter" type="text" placeholder="e.g. my-repo — blank aggregates all sessions" data-setting="projectFilter" />
+    <div class="hint">Matches the project directory name. Blank = any session working → Working.</div>
+  </div>
+
+  <div id="hookStatus" class="status off">Checking hook status…</div>
+  <div class="row">
+    <button id="installBtn">Enable live session state</button>
+    <button id="removeBtn" class="secondary">Remove</button>
+  </div>
+  <div class="hint">
+    Opt-in and reversible: merges state-reporting hooks into ~/.claude/settings.json
+    (existing hooks are never touched; a timestamped backup is written first).
+  </div>
+
+  <script src="pi.js"></script>
+  <script>
+    const statusEl = document.getElementById("hookStatus");
+    const installBtn = document.getElementById("installBtn");
+    const removeBtn = document.getElementById("removeBtn");
+
+    function render(payload) {
+      if (!payload || payload.event !== "hook-status") return;
+      if (payload.error) {
+        statusEl.className = "status error";
+        statusEl.textContent = payload.error;
+      } else if (payload.installed) {
+        statusEl.className = "status ok";
+        statusEl.textContent = "Live session state is enabled" +
+          (payload.backupPath ? " (backup: " + payload.backupPath + ")" : "") + ".";
+      } else {
+        statusEl.className = "status off";
+        statusEl.textContent = "Live session state is not enabled. The tile will show \"No data\".";
+      }
+      installBtn.disabled = !payload.error && payload.installed;
+      removeBtn.disabled = !payload.error && !payload.installed;
+    }
+
+    window.piOnMessage(render);
+    installBtn.addEventListener("click", () => window.piSendToPlugin({ event: "hook-install" }));
+    removeBtn.addEventListener("click", () => window.piSendToPlugin({ event: "hook-remove" }));
+    window.piReady = () => window.piSendToPlugin({ event: "hook-status" });
+  </script>
+</body>
+</html>

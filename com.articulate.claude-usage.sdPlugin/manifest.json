@@ -1,0 +1,88 @@
+{
+  "$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
+  "Name": "Claude Deck",
+  "Version": "0.1.0.0",
+  "Author": "Jesse Wicks",
+  "Description": "Claude Code on your Stream Deck: usage cost/token tiles (via ccusage), live session state via hooks, and dials/keys for skills, core actions, and reasoning level.",
+  "Icon": "imgs/plugin/icon",
+  "SDKVersion": 2,
+  "Software": {
+    "MinimumVersion": "6.5"
+  },
+  "OS": [
+    { "Platform": "mac", "MinimumVersion": "12" },
+    { "Platform": "windows", "MinimumVersion": "10" }
+  ],
+  "Category": "Claude Deck",
+  "CategoryIcon": "imgs/plugin/category-icon",
+  "CodePath": "bin/plugin.mjs",
+  "Nodejs": {
+    "Version": "20",
+    "Debug": "disabled"
+  },
+  "Actions": [
+    {
+      "UUID": "com.articulate.claude-usage.usage",
+      "Name": "Usage Tile",
+      "Tooltip": "Claude Code spend/tokens for the active 5h block, today, last 7 days, or month. Press to refresh.",
+      "Icon": "imgs/actions/usage/icon",
+      "PropertyInspectorPath": "ui/usage.html",
+      "Controllers": ["Keypad"],
+      "UserTitleEnabled": false,
+      "States": [{ "Image": "imgs/actions/usage/key" }]
+    },
+    {
+      "UUID": "com.articulate.claude-usage.session-state",
+      "Name": "Session State",
+      "Tooltip": "Live Claude Code session state (idle / working / waiting / done) via hooks. Press to re-read.",
+      "Icon": "imgs/actions/session/icon",
+      "PropertyInspectorPath": "ui/session-state.html",
+      "Controllers": ["Keypad"],
+      "UserTitleEnabled": false,
+      "States": [{ "Image": "imgs/actions/session/key" }]
+    },
+    {
+      "UUID": "com.articulate.claude-usage.skill-dial",
+      "Name": "Skill Dial",
+      "Tooltip": "Rotate to pick a Claude Code skill/workflow, press to type it into your terminal.",
+      "Icon": "imgs/actions/skill/icon",
+      "PropertyInspectorPath": "ui/skill-dial.html",
+      "Controllers": ["Encoder"],
+      "Encoder": {
+        "layout": "$B1",
+        "TriggerDescription": {
+          "Rotate": "Choose skill",
+          "Push": "Send to terminal",
+          "Touch": "Send to terminal"
+        }
+      },
+      "States": [{ "Image": "imgs/actions/skill/key" }]
+    },
+    {
+      "UUID": "com.articulate.claude-usage.command-key",
+      "Name": "Command Key",
+      "Tooltip": "One dedicated shortcut: accept (Enter), reject (Esc), new chat (/clear), or custom text.",
+      "Icon": "imgs/actions/command/icon",
+      "PropertyInspectorPath": "ui/command-key.html",
+      "Controllers": ["Keypad"],
+      "States": [{ "Image": "imgs/actions/command/key" }]
+    },
+    {
+      "UUID": "com.articulate.claude-usage.reasoning-dial",
+      "Name": "Reasoning Dial",
+      "Tooltip": "Rotate to pick a thinking level (think → ultrathink), press to type it.",
+      "Icon": "imgs/actions/reasoning/icon",
+      "PropertyInspectorPath": "ui/reasoning-dial.html",
+      "Controllers": ["Encoder"],
+      "Encoder": {
+        "layout": "$B1",
+        "TriggerDescription": {
+          "Rotate": "Choose level",
+          "Push": "Send to terminal",
+          "Touch": "Send to terminal"
+        }
+      },
+      "States": [{ "Image": "imgs/actions/reasoning/key" }]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "claude-deck",
+  "version": "0.1.0",
+  "description": "Stream Deck plugin for Claude Code: usage tiles, live session state, skill/command/reasoning controls",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "pack": "node scripts/pack.mjs"
+  },
+  "dependencies": {
+    "@elgato/streamdeck": "2.1.0",
+    "ccusage": "20.0.17"
+  },
+  "devDependencies": {
+    "@types/node": "26.1.1",
+    "esbuild": "0.28.1",
+    "typescript": "7.0.2",
+    "vitest": "4.1.10"
+  }
+}

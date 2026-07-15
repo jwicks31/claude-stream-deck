@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="pi.css" />
+</head>
+<body>
+  <div class="field">
+    <label for="items">Skills / workflows (one per line)</label>
+    <textarea id="items" data-setting="items" placeholder="/code-review&#10;/debug&#10;/explore&#10;/test&#10;/pr-description"></textarea>
+  </div>
+  <div class="field">
+    <label for="terminalApp">Terminal app to activate (optional)</label>
+    <input id="terminalApp" type="text" placeholder="e.g. iTerm, Terminal, Ghostty — blank = frontmost app" data-setting="terminalApp" />
+  </div>
+  <div class="field row">
+    <input id="pressEnter" type="checkbox" data-setting="pressEnter" />
+    <label for="pressEnter" style="margin:0">Press Enter after typing (launch immediately)</label>
+  </div>
+  <div class="hint">Rotate to choose, press the dial to type into your terminal. macOS only; requires Stream Deck to have Accessibility permission (System Settings → Privacy &amp; Security).</div>
+  <script src="pi.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="pi.css" />
+</head>
+<body>
+  <div class="field">
+    <label for="preset">Command</label>
+    <select id="preset" data-setting="preset">
+      <option value="accept">Accept (Enter)</option>
+      <option value="reject">Reject (Escape)</option>
+      <option value="new-chat">New chat (/clear)</option>
+      <option value="custom">Custom text…</option>
+    </select>
+  </div>
+  <div class="field" id="customField" style="display:none">
+    <label for="customText">Custom text</label>
+    <input id="customText" type="text" placeholder="e.g. /compact" data-setting="customText" />
+    <div class="row" style="margin-top:6px">
+      <input id="pressEnter" type="checkbox" data-setting="pressEnter" />
+      <label for="pressEnter" style="margin:0">Press Enter after typing</label>
+    </div>
+  </div>
+  <div class="field">
+    <label for="terminalApp">Terminal app to activate (optional)</label>
+    <input id="terminalApp" type="text" placeholder="blank = frontmost app" data-setting="terminalApp" />
+  </div>
+  <div class="hint">macOS only; requires Accessibility permission for Stream Deck.</div>
+  <script src="pi.js"></script>
+  <script>
+    const presetEl = document.getElementById("preset");
+    const customField = document.getElementById("customField");
+    function toggleCustom() { customField.style.display = presetEl.value === "custom" ? "" : "none"; }
+    presetEl.addEventListener("change", toggleCustom);
+    window.piReady = toggleCustom;
+  </script>
+</body>
+</html>
